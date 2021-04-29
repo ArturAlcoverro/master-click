@@ -1,37 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Socke.io Client Example</title>
-        <style>
-            @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                font-family: "Nunito", sans-serif;
-            }
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socke.io Client Example</title>
+    <script src="https://cdn.socket.io/socket.io-3.0.0.js"></script>
+    <script defer src="app.js"></script>
+</head>
 
-            .game {
-                display: flex;
-                flex-direction: row;
-                gap: 3em;
-            }
-        </style>
+<body>
+    <div id="app">
+        <nav>
+            <h1>
+                MasterClick
+            </h1>
+            <h3><span id="user"></span>: <span id=score></span></h3>
+            <h3><span>Connected</span>: <span id=counter></span></h3>
+        </nav>
 
-        <script src="https://cdn.socket.io/socket.io-3.0.0.js"></script>
-        <script defer src="app.js"></script>
-    </head>
-    <body>
-        <div id="app">
-            <h1>Master.Click.io <small id="counter">0</small></h1>
-            <div class="game">
-                <button id="sendButton">Enviar</button>
-                <div id="clicksTxt"></div>
-            </div>
+        <div id="textMessage"></div>
+        <div class="game">
+            <button id="sendButton">Enviar</button>
+            <div id="clicksTxt"></div>
         </div>
-    </body>
+    </div>
+</body>
+
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+    }
+
+    body {
+        background-color: #ececec;
+
+    }
+
+    .game {
+        width: 100%;
+        height: 90vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 3em;
+        position: relative;
+    }
+
+    #clicksTxt {
+        user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+        font-size: 50vmin;
+        font-weight: 700;
+        color: rgb(201, 201, 201)
+    }
+
+    #sendButton {
+        border: none;
+        background-color: rgb(0, 132, 255);
+        color: white;
+        font-weight: 500;
+        font-size: 25px;
+        padding: 30px 50px;
+        border-radius: 10px;
+        cursor: pointer;
+        position: absolute;
+        transition: all .05s;
+        animation: btn infinite 20s;
+        animation-timing-function: linear;
+        transform: translate(-50%, -50%);
+    }
+
+    #sendButton:active {
+        background-color: rgb(0, 89, 255);
+    }
+
+    @keyframes btn {
+        0% {
+            top: 50%;
+            left: 50%
+        }
+
+        5% {
+            top: 75%;
+            left: 50%
+        }
+
+        10% {
+            top: 75%;
+            left: 75%
+        }
+
+        15% {
+            top: 50%;
+            left: 75%
+        }
+
+        20% {
+            top: 25%;
+            left: 50%
+        }
+
+        25% {
+            top: 50%;
+            left: 25%
+        }
+
+        30% {
+            top: 25%;
+            left: 25%
+        }
+
+        35% {
+            top: 25%;
+            left: 40%
+        }
+
+        40% {
+            top: 25%;
+            left: 25%
+        }
+
+        45% {
+            top: 55%;
+            left: 30%
+        }
+
+        50% {
+            top: 50%;
+            left: 50%
+        }
+
+        55% {
+            left: 33%;
+            top: 33%
+        }
+
+        60% {
+            left: 75%;
+            top: 50%
+        }
+
+        65% {
+            left: 75%;
+            top: 75%
+        }
+
+        70% {
+            left: 50%;
+            top: 75%
+        }
+
+        75% {
+            left: 25%;
+            top: 50%
+        }
+
+        80% {
+            left: 50%;
+            top: 25%
+        }
+
+        85% {
+            left: 25%;
+            top: 25%
+        }
+
+        90% {
+            left: 25%;
+            top: 40%
+        }
+
+        95% {
+            left: 25%;
+            top: 25%
+        }
+
+        100% {
+            left: 50%;
+            top: 50%
+        }
+    }
+</style>
+
 </html>

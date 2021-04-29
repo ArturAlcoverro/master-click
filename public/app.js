@@ -6,6 +6,7 @@ let usersConnected = document.getElementById("counter");
 let numClicksText = document.getElementById("clicksTxt");
 
 const urlParams = new URLSearchParams(window.location.search);
+const username = urlParams.get("user")
 
 const socket = io();
 
@@ -41,17 +42,18 @@ socket.on("usuario desconectado", (data) => {
 });
 
 socket.on("connect", () => {
-    socket.emit("iam", urlParams.get("user"));
+    socket.emit("iam", username);
 });
 
 socket.on("numero de usuarios", (data) => {
     usersConnected.innerText = data.usersConnected;
-    numClicksText.innerHTML = data.numClicks;
+    numClicksText.innerHTML = data.total;
 });
 socket.on("new click", (data) => {
-    numClicksText.innerText = data.numClicks;
+    numClicksText.innerText = data.total;
+    updateList(data.scores)
 });
 
 sendButton.onclick = () => {
-    socket.emit("click", "");
+    socket.emit("click");
 };

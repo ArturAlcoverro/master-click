@@ -10,12 +10,17 @@ app.use(cors());
 app.use(express.static("public"));
 
 let usersConnected = 0;
-let numClicks = 0;
+let total = 0;
+let scores = new Map;
+
+function getUser(username) {
+    if (!scores.get(username)) scores.set(username, {score: 0, connected: true})
+    return scores.get(username)
+}
 
 // escuchar conexiones
 io.on("connection", (socket) => {
     usersConnected++;
-
     // escuchar mensaje
     socket.on("message", (message) => {
         io.emit("message", {
@@ -27,26 +32,33 @@ io.on("connection", (socket) => {
     // evento para saber quien es el username del socket abierto y emite el
     // username y usersConnected
     socket.on("iam", (username) => {
+        const user = getUser(username)
+        console.log(scores)
         socket.broadcast.emit("usuario conectado", {
             username,
             usersConnected,
         });
         socket.username = username;
-        socket.emit("numero de usuarios", {
+        io.emit("numero de usuarios", {
             usersConnected,
-            numClicks,
+            total,
         });
     });
 
     socket.on("click", () => {
-        numClicks++;
+        const user = getUser(socket.username)
+        user.score++
+        total++;
+        user.score++
         io.emit("new click", {
-            numClicks,
+            total,
+            scores
         });
     });
 
     // detecta la desconexión y emite un evento al cliente con el username desconectado
     socket.on("disconnect", () => {
+        console.log("disconnected: ", socket.username)
         usersConnected--;
         socket.broadcast.emit("usuario desconectado", {
             username: socket.username,
