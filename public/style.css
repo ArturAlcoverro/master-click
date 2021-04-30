@@ -1,0 +1,260 @@
+@import url(https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Inter, sans-serif;
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none
+}
+
+body {
+    background-color: #ececec
+}
+
+.red {
+    color: red
+}
+
+.green {
+    color: green
+}
+
+.yellow {
+    color: orange
+}
+
+nav {
+    padding: 0 10px;
+    width: 100%;
+    min-height: 75px;
+    background: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 10px #888888c9
+}
+
+.me td {
+    color: #000 !important
+}
+
+tr {
+    position: relative
+}
+
+tr:before {
+    display: inline-block;
+    position: relative;
+    content: "";
+    width: 10px;
+    height: 10px;
+    top: 1px;
+    right: 3px;
+    border-radius: 50%;
+    background: rgb(255, 64, 64)
+}
+
+.connected:before {
+    display: inline-block;
+    position: relative;
+    content: "";
+    width: 10px;
+    height: 10px;
+    top: 1px;
+    right: 3px;
+    border-radius: 10px;
+    background: rgb(53, 204, 53)
+}
+
+#info {
+    min-width: 50%;
+    background: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap
+}
+
+#info>* {
+    margin: 0 15px
+}
+
+.game {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+    position: relative
+}
+
+#clicksTxt {
+    font-size: 50vmin;
+    font-weight: 700;
+    color: #c9c9c9
+}
+
+#reset {
+    border: none;
+    background-color: #e01e1e;
+    color: #fff;
+    padding: 10px 20px;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: all .05s
+}
+
+#reset:active {
+    background-color: #c01111
+}
+
+#sendButton {
+    border: none;
+    background-color: #0084ff;
+    color: #fff;
+    font-weight: 500;
+    font-size: 25px;
+    padding: 25px 50px;
+    border-radius: 10px;
+    cursor: pointer;
+    position: absolute;
+    transition: all .05s;
+    animation: btn infinite 30s;
+    animation-timing-function: linear;
+    transform: translate(-50%, -50%)
+}
+
+#sendButton:active {
+    background-color: #0059ff
+}
+
+#scoresTable {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px
+}
+
+#scoresTable>tbody>tr>td {
+    padding: 2px 5px;
+    font-weight: 500;
+    color: #939393
+}
+
+@keyframes btn {
+    0% {
+        top: 50%;
+        left: 50%
+    }
+
+    5% {
+        top: 75%;
+        left: 50%
+    }
+
+    10% {
+        top: 75%;
+        left: 75%
+    }
+
+    15% {
+        top: 50%;
+        left: 75%
+    }
+
+    20% {
+        top: 25%;
+        left: 50%
+    }
+
+    25% {
+        top: 50%;
+        left: 25%
+    }
+
+    30% {
+        top: 25%;
+        left: 25%
+    }
+
+    35% {
+        top: 25%;
+        left: 40%
+    }
+
+    40% {
+        top: 25%;
+        left: 25%
+    }
+
+    45% {
+        top: 55%;
+        left: 30%
+    }
+
+    50% {
+        top: 50%;
+        left: 50%
+    }
+
+    55% {
+        left: 33%;
+        top: 33%
+    }
+
+    60% {
+        left: 75%;
+        top: 50%
+    }
+
+    65% {
+        left: 75%;
+        top: 75%
+    }
+
+    70% {
+        left: 50%;
+        top: 75%
+    }
+
+    75% {
+        left: 25%;
+        top: 50%
+    }
+
+    80% {
+        left: 50%;
+        top: 25%
+    }
+
+    85% {
+        left: 25%;
+        top: 25%
+    }
+
+    90% {
+        left: 25%;
+        top: 40%
+    }
+
+    95% {
+        left: 25%;
+        top: 25%
+    }
+
+    100% {
+        left: 50%;
+        top: 50%
+    }
+}
