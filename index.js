@@ -36,7 +36,7 @@ io.on("connection", (socket) => {
     socket.on("iam", (username) => {
         getUser(username)
         socket.broadcast.emit("usuario conectado", {
-            username,
+            total,
             usersConnected,
             scores
         });
@@ -63,7 +63,6 @@ io.on("connection", (socket) => {
         scores.forEach(e => {
             e.score = 0;
         })
-        console.log(scores)
         io.emit("reset", scores)
     });
 
@@ -73,7 +72,7 @@ io.on("connection", (socket) => {
         getUser(socket.username).connected = false
         usersConnected--;
         socket.broadcast.emit("usuario desconectado", {
-            username: socket.username,
+            total,
             usersConnected: usersConnected,
             scores
         });
